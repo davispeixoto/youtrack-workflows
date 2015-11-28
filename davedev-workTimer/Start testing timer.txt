@@ -1,0 +1,5 @@
+rule Start testing timer 
+ 
+when State.becomes({Testing In Progress}) { 
+  Timer time = now; 
+}

@@ -1,0 +1,5 @@
+schedule rule Remove from progress by 21 - Testing 
+ 
+daily at 21:00:00 [issue.State == {Testing In Progress}] { 
+  issue.State = {Paused Test}; 
+}

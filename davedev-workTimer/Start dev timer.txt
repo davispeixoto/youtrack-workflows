@@ -1,0 +1,6 @@
+rule Start dev timer 
+ 
+when State.becomes({In Progress}) { 
+  Timer time = now; 
+  message(l10n ( The timer is started. )); 
+}

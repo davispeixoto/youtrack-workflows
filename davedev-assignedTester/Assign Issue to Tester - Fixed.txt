@@ -1,0 +1,10 @@
+rule Assign Issue to Tester - Fixed 
+ 
+when State.becomes({Fixed}) { 
+  if (Assigned Tester != null) { 
+    if (Assigned Developer == null) { 
+      Assigned Developer = Assignee; 
+    } 
+    Assignee = Assigned Tester; 
+  } 
+}

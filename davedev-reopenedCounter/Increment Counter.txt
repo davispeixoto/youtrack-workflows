@@ -1,0 +1,9 @@
+rule Increment Counter 
+ 
+when State.becomes({Reopened}) { 
+  if (Times reopened == null) { 
+    Times reopened = 1; 
+  } else { 
+    Times reopened = (Times reopened + 1); 
+  } 
+}

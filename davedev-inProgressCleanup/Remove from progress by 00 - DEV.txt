@@ -1,0 +1,5 @@
+schedule rule Remove from progress by 00 - DEV 
+ 
+daily at 00:00:00 [issue.State == {In Progress}] { 
+  issue.State = {Paused}; 
+}

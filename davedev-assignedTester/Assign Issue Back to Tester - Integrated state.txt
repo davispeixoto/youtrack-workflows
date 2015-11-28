@@ -1,0 +1,10 @@
+rule Assign Issue Back to Tester - Integrated state 
+ 
+when State.becomes({Integrated}) { 
+  if (Assigned Tester != null) { 
+    if (Assigned Developer == null) { 
+      Assigned Developer = Assignee; 
+    } 
+    Assignee = Assigned Tester; 
+  } 
+}

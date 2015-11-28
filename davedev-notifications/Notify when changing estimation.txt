@@ -1,0 +1,11 @@
+rule Notify when changing estimation 
+ 
+when Estimation.changed { 
+  if (Estimation.oldValue != null && Spent time != null) { 
+    issue.project.leader.notify("Estimation was changed at issue " + getId() + " by " + loggedInUser.fullName, "The user " + loggedInUser.fullName + " has changed the estimation of " + getId() + " -> " + getUrl()); 
+  } 
+   
+  if (Estimation.oldValue == null && Spent time != null && Type != {Bug} && Type != {Exception} && (issue.isResolved() || issue.State == {Fixed})) { 
+    issue.project.leader.notify("Estimation made at issue " + getId() + " by " + loggedInUser.fullName + " after start", "The user " + loggedInUser.fullName + " made the estimation for " + getId() + " after started it. Check it: " + getUrl()); 
+  } 
+}

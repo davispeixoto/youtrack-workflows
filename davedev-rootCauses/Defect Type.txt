@@ -1,0 +1,8 @@
+rule Defect Type 
+ 
+when State.changed && State.becomes({Reopened}) { 
+  if (Defect Type == null) { 
+    State = {Testing In Progress}; 
+    message("Please inform the defect type."); 
+  } 
+}

@@ -1,0 +1,7 @@
+rule Assign Issue Back to Developer - Reopened state 
+ 
+when State.becomes({Reopened}) { 
+  if (Assigned Developer != null && Assigned Developer != Assignee) { 
+    Assignee = Assigned Developer; 
+  } 
+}

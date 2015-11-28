@@ -1,0 +1,7 @@
+rule Assign Issue Back to Developer - Verified state 
+ 
+when State.becomes({Verified}) { 
+  if (Assigned Developer != null && Assignee != Assigned Developer) { 
+    Assignee = Assigned Developer; 
+  } 
+}

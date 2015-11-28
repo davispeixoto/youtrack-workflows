@@ -1,0 +1,7 @@
+rule Assign Issue Back to Developer - Waiting Integration state 
+ 
+when State.becomes({Waiting Integration}) { 
+  if (Assigned Developer != null && Assigned Developer != Assignee) { 
+    Assignee = Assigned Developer; 
+  } 
+}

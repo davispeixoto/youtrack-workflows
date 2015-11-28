@@ -1,0 +1,11 @@
+rule Auto Assigned Developer 
+ 
+when State.changed { 
+  if (State == {In Progress} && Assignee == null) { 
+    Assignee = loggedInUser; 
+  } 
+   
+  if (State == {In Progress} && Assigned Developer == null && Assignee != null) { 
+    Assigned Developer = Assignee; 
+  } 
+}

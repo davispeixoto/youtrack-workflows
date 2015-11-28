@@ -1,0 +1,32 @@
+rule Stop testing timer 
+ 
+when State.changed { 
+  if (State.oldValue == {Testing In Progress}) { 
+    var duration = now - Timer time; 
+    var seconds = (duration.millis - duration.millis % 1000) / 1000; 
+    var minutes = (seconds - seconds % 60) / 60; 
+    var hours = (minutes - minutes % 60) / 60; 
+    var days = (hours - hours % 24) / 24; 
+    var assignee = Assignee; 
+     
+    if (Assignee != Assigned Tester && Assigned Tester != null) { 
+      assignee = Assigned Tester; 
+    } 
+     
+    if (Assigned Tester == null) { 
+      message("You need to choose a responsible tester!!"); 
+      State = State.oldValue; 
+    } else { 
+      minutes = minutes % 60; 
+      hours = hours % 24; 
+      if (days != 0) { 
+        message(l10n ( Work time:  {days}  day(s)  {hours}  hour(s)  {minutes}  minute(s). )); 
+      } else if (hours != 0) { 
+        message(l10n ( Work time:  {hours}  hour(s)  {minutes}  minute(s). )); 
+      } else { 
+        message(l10n ( Work time:  {minutes}  minute(s). )); 
+      } 
+      issue.applyCommand("add work Testing Today " + days + "d" + hours + "h" + minutes + "m The work item automatically added by the timer", assignee); 
+    } 
+  } 
+}

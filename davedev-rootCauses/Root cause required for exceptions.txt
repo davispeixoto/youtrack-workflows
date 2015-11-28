@@ -1,0 +1,8 @@
+rule Root cause required for exceptions 
+ 
+when State.changed && State.becomes({Verified}) && Type == {Exception} { 
+  if (Root Cause == null) { 
+    State = {Paused}; 
+    message("An exception requires a root cause before being concluded."); 
+  } 
+}

@@ -1,0 +1,9 @@
+rule Maximum in progress allowed is one task - Testing 
+ 
+when State.becomes({Testing In Progress}) { 
+  for each issuesFromUser in issue.Assignee.getIssues(Everything, "for: me State: {Testing In Progress}") { 
+    if (issue.getId() != issuesFromUser.getId()) { 
+      issuesFromUser.State = {Paused Test}; 
+    } 
+  } 
+}
